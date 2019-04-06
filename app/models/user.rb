@@ -5,7 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
     
   validates_uniqueness_of :auth_token
-  before_create :generate_authentication_token!   
+  before_create :generate_authentication_token!
+  has_many :gains, dependent: :destroy
    
   def info
      "#{email} - #{create_at} - Token #{Devise.friendly_token}" 
